@@ -10,6 +10,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color sColor = Colors.black26;
+  int count = 0;
+  void ontapped(int index) {
+    setState(() {
+      count = index;
+      sColor = Colors.green;
+    });
+  }
+
+  List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+    ),
+    Text(
+      'Index 1: Business',
+    ),
+    Text(
+      'Index 2: School',
+    ),
+    Text(
+      'Index 3: School',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
@@ -60,6 +84,35 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.black38,
+        elevation: 0,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: 'Asosiy',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.restart_alt),
+            label: 'O\'tkazmalar',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.school,
+            ),
+            label: 'To\'lov',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.access_alarms_outlined,
+            ),
+            label: 'Tarix',
+          ),
+        ],
+        currentIndex: count,
+        selectedItemColor: sColor,
+        onTap: ontapped,
       ),
     );
   }
